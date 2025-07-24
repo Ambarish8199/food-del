@@ -3,9 +3,13 @@ import cors from "cors"
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import userRouter from "./routes/userRoute.js";
-import 'dotenv/config'
+import { config } from "dotenv";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+
+config({
+    path:"./.env"
+})
 
 //app configuration
 const app = express();
@@ -30,8 +34,8 @@ app.get("/",(req,res)=>{
     res.send("API Working")
 })
 
-app.listen(port,()=>{
-    console.log(`Server Started on http://localhost:${port}`)
+app.listen(process.env.PORT,()=>{
+    console.log(`Server Started on ${process.env.PORT}`)
 })
 
 //mongodb+srv://greatstack:9935521297@cluster0.bmts8ke.mongodb.net/?
