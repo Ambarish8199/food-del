@@ -7,7 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount, token, food_list, cartItems, url } =
+  const { getTotalCartAmount, token, food_list, cartItems, url,setCartItems } =
     useContext(StoreContext);
   const [data, setData] = useState({
     firstName: "",
@@ -166,6 +166,7 @@ const PlaceOrder = () => {
 
       if (response.data.success) {
         await displayRazorpay(response.data, orderDataWithTimestamp);
+        setCartItems([])
       } else {
         alert("Error creating order");
         setLoading(false);
